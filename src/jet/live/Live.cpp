@@ -141,7 +141,7 @@ namespace jet
 
     void Live::tryReload()
     {
-        m_context->events->addLog(LogSeverity::kInfo, "Trying to reload code...");
+        m_context->events->addLog(LogSeverity::kDebug, "Trying to reload code...");
         m_context->events->addEvent(jet::make_unique<TryReloadEvent>());
     }
 

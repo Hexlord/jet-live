@@ -20,14 +20,13 @@ class FileInfo
 		FileInfo();
 
 		FileInfo( const std::string& filepath );
-
-		FileInfo( const std::string& filepath, bool linkInfo );
+        FileInfo( const std::string& filepath, bool linkInfo );
+        FileInfo( const FileInfo& Other );
 
 		bool operator==( const FileInfo& Other ) const;
 
-		bool operator!=( const FileInfo& Other ) const;
-
-		FileInfo& operator=( const FileInfo& Other );
+        bool operator!=( const FileInfo& Other ) const;
+        FileInfo& operator=( const FileInfo& Other );
 
 		bool isDirectory() const;
 

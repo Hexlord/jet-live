@@ -227,7 +227,7 @@ namespace jet
             finishCallback)
     {
         if (m_readyCompilationUnits.empty()) {
-            m_context->events->addLog(LogSeverity::kInfo, "Nothing to reload.");
+            m_context->events->addLog(LogSeverity::kDebug, "Nothing to reload.");
             return;
         }
 

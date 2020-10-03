@@ -443,6 +443,7 @@ Out Utf<16>::ToUtf32(In begin, In end, Out output)
 template <typename In>
 In Utf<32>::Decode(In begin, In end, Uint32& output, Uint32)
 {
+    (void)end;
     output = *begin++;
     return begin;
 }
@@ -450,6 +451,7 @@ In Utf<32>::Decode(In begin, In end, Uint32& output, Uint32)
 template <typename Out>
 Out Utf<32>::Encode(Uint32 input, Out output, Uint32 replacement)
 {
+    (void)replacement;
     *output++ = input;
     return output;
 }
@@ -457,6 +459,7 @@ Out Utf<32>::Encode(Uint32 input, Out output, Uint32 replacement)
 template <typename In>
 In Utf<32>::Next(In begin, In end)
 {
+    (void)end;
     return ++begin;
 }
 
