@@ -1,6 +1,7 @@
 
 cmake_minimum_required(VERSION 3.6)
 project(jet-live)
+cmake_policy(SET CMP0077 NEW)
 
 option(JET_LIVE_SHARED "Compile as shared library. ON - shared, OFF - static." OFF)
 option(JET_LIVE_BUILD_EXAMPLE "Compile example application." ON)
