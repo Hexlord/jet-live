@@ -126,9 +126,9 @@ namespace jet
 
     bool Live::isInitialized() const { return m_initialized; }
 
-    Status Live::getStatus() const
+    JetStatus Live::getStatus() const
     {
-        Status res;
+        JetStatus res;
         res.compilingFiles = m_compiler->getFilesBeingCompiled();
         res.successfulFiles = m_compiler->getSuccessfullyCompiledFiles();
         res.failedFiles = m_compiler->getFailedToCompileFiles();

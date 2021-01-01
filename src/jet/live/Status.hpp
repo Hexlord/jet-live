@@ -6,7 +6,7 @@
 
 namespace jet
 {
-    struct Status
+    struct JetStatus
     {
         std::set<std::string> compilingFiles;
         std::set<std::string> successfulFiles;

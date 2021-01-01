@@ -53,7 +53,7 @@ namespace jet
         /**
          * Retrieves status of the library.
          */
-        Status getStatus() const;
+        JetStatus getStatus() const;
 
     private:
         std::unique_ptr<LiveContext> m_context;
