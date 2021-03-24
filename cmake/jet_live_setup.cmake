@@ -1,9 +1,6 @@
 
 set(JET_LIVE_CONFIGURED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # enables compile_commands.json generation
-if (NOT CMAKE_BUILD_TYPE STREQUAL "Debug")
-  message(FATAL_ERROR "jet-live works correctly only on Debug configuration")
-endif()
 
 # -MD                   - needed to generate depfiles to track dependencies between files.
 # -falign-functions=16  - needed to keep enough space between functions to make each function "patchable", so
