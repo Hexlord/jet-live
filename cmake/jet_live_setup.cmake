@@ -30,10 +30,12 @@ endif()
 #                         the __TEXT segment access rights.
 # -Wl,-segprot,__JET_TEXT,rwx,rwx
 #                       - sets minimum and maximum access rights for the __JET_TEXT segment.
+
+set(JET_LIVE_AVAILABLE ON)
 if (UNIX AND NOT APPLE)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-export-dynamic ")
 elseif (UNIX AND APPLE)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-export_dynamic -Wl,-flat_namespace -Wl,-rename_section,__TEXT,__text,__JET_TEXT,__text -Wl,-segprot,__JET_TEXT,rwx,rwx ")
 else()
-  message(FATAL_ERROR "Platform is not supported")
+  set(JET_LIVE_AVAILABLE OFF)
 endif()
