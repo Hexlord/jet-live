@@ -209,7 +209,6 @@ static int subhook_disasm(void *src, int *reloc_op_offset) {
   size_t i;
   int len = 0;
   int operand_size = 4;
-  uint8_t opcode = 0;
   int found_opcode = false;
 
   for (i = 0; i < sizeof(prefixes) / sizeof(*prefixes); i++) {
@@ -250,7 +249,7 @@ static int subhook_disasm(void *src, int *reloc_op_offset) {
     }
 
     if (found_opcode) {
-      opcode = code[len++];
+      len++;
       break;
     }
   }
