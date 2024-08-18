@@ -1,13 +1,10 @@
 set(JET_LIVE_CONFIGURED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)   # enables compile_commands.json generation
 
-set(JET_LIVE_AVAILABLE ON)
 if (UNIX AND NOT APPLE)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-export-dynamic ")
 elseif (UNIX AND APPLE)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-export_dynamic -Wl,-flat_namespace -Wl,-rename_section,__TEXT,__text,__JET_TEXT,__text -Wl,-segprot,__JET_TEXT,rwx,rwx ")
-else()
-  set(JET_LIVE_AVAILABLE OFF)
 endif()
 
 if(JET_LIVE_AVAILABLE)
