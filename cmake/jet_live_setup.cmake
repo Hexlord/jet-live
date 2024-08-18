@@ -15,8 +15,8 @@ endif()
 if (CMAKE_CXX_COMPILER_ID MATCHES "GNU")
   # Not all recent versions of clang support this flag.
   # But looks like clang already aligns functions on the 16 bytes border by default.
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -falign-functions=16 ")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -falign-functions=16 ")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -falign-functions=16 -Wno-maybe-uninitialized -Wno-dangling-pointer")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -falign-functions=16 -Wno-maybe-uninitialized -Wno-dangling-pointer")
 endif()
 
 # -Wl,-export-dynamic   - needed to make dynamic linker happy when the shared lib
