@@ -10,6 +10,10 @@ option(JET_LIVE_BUILD_TESTS "Compile test applications." OFF)
 if (NOT JET_LIVE_CONFIGURED)
   include(cmake/jet_live_setup.cmake)
 endif()
+# For debugging JetLive
+if(0)
+	set(CMAKE_CXX_FLAGS_DEBUG 		"-O0 -g            -DSE_DEBUG=1 -DSE_VERBOSE_DEBUG=1 -DDEBUG=1          -DSE_SHIPPING=0 -DSE_BUILD_CONFIG=\"Debug\"")
+endif()
 
 ########## lib_subhook
 add_library(lib_subhook STATIC "")
