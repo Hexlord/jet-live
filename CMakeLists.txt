@@ -241,7 +241,7 @@ target_compile_options(jet-live
   $<$<COMPILE_LANGUAGE:CXX>:-Wshadow>
   $<$<COMPILE_LANGUAGE:C>:-Wconversion>
   $<$<COMPILE_LANGUAGE:CXX>:-Wconversion>
-  -Wno-dangling-reference -Wno-shadow
+  -Wno-dangling-reference -Wno-shadow -Wno-deprecated-declarations
   )
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_compile_options(jet-live
