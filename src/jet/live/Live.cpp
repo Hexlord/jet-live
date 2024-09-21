@@ -19,7 +19,7 @@ namespace jet
     Live::~Live()
     {
         if (m_initThread.joinable()) {
-            m_earlyExit = true;
+            m_context->m_earlyExit = true;
             m_initThread.join();
         }
         onLiveDestroyed();
@@ -63,7 +63,7 @@ namespace jet
 
             for (auto& f : initializationFunctions) {
                 f();
-                if (m_earlyExit) {
+                if (m_context->m_earlyExit.load(std::memory_order_relaxed)) {
                     break;
                 }
             }
@@ -230,6 +230,9 @@ namespace jet
         std::unordered_set<std::string> dirs;
         std::string commonDir;
         for (const auto& cu : m_context->compilationUnits) {
+            if(m_context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }           
             const auto& sourceFilePath = cu.second.sourceFilePath;
             if (commonDir.empty()) {
                 commonDir = sourceFilePath;
@@ -286,6 +289,9 @@ namespace jet
     void Live::loadSymbols()
     {
         for (const auto& el : m_context->programInfoLoader->getAllLoadedProgramsPaths(m_context.get())) {
+            if(m_context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }      
             m_context->events->addLog(LogSeverity::kDebug, "Loading symbols for " + el + " ...");
             Program program;
             program.path = el;
@@ -309,6 +315,9 @@ namespace jet
         size_t totalExportedSymbols = 0;
         int totalFiles = 0;
         for (const auto& cu : m_context->compilationUnits) {
+            if(m_context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }      
             const auto& symNames =
                 m_context->programInfoLoader->getExportedSymbolNames(m_context.get(), cu.second.objFilePath);
             totalExportedSymbols += symNames.size();
@@ -327,6 +336,9 @@ namespace jet
     {
         m_context->events->addLog(LogSeverity::kDebug, "Parsing dependencies...");
         for (auto& cu : m_context->compilationUnits) {
+            if(m_context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }           
             updateDependencies(cu.second);
         }
         m_context->events->addLog(LogSeverity::kDebug, "Success parsing dependencies");
