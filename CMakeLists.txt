@@ -12,7 +12,7 @@ if (NOT JET_LIVE_CONFIGURED)
 endif()
 # For debugging JetLive
 if(0)
-	set(CMAKE_CXX_FLAGS_DEBUG 		"-O0 -g            -DSE_DEBUG=1 -DSE_VERBOSE_DEBUG=1 -DDEBUG=1          -DSE_SHIPPING=0 -DSE_BUILD_CONFIG=\"Debug\"")
+	set(CMAKE_CXX_FLAGS_DEBUG "${SE_FLAGS_DEBUG}")
 endif()
 
 ########## lib_subhook
