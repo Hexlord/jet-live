@@ -1,6 +1,7 @@
 
 cmake_minimum_required(VERSION 3.6)
 project(jet-live)
+cmake_policy(SET CMP0077 NEW)
 
 option(JET_LIVE_SHARED "Compile as shared library. ON - shared, OFF - static." OFF)
 option(JET_LIVE_BUILD_EXAMPLE "Compile example application." ON)
@@ -8,6 +9,10 @@ option(JET_LIVE_BUILD_TESTS "Compile test applications." OFF)
 
 if (NOT JET_LIVE_CONFIGURED)
   include(cmake/jet_live_setup.cmake)
+endif()
+# For debugging JetLive
+if(0)
+	set(CMAKE_CXX_FLAGS_DEBUG "${SE_FLAGS_DEBUG}")
 endif()
 
 ########## lib_subhook
@@ -153,7 +158,7 @@ if (JET_LIVE_SHARED)
   target_compile_options(jet-live PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
   target_compile_options(lib_subhook PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
   target_compile_options(lib_whereami PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
-  target_compile_options(lib_efsw PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
+  target_compile_options(lib_efsw PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC> -Wno-implicit-fallthrough)
   target_compile_options(lib_tiny-process-library PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
   target_compile_options(lib_teenypath PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
   target_compile_options(lib_xxhash PRIVATE $<$<COMPILE_LANGUAGE:C>:-fPIC> $<$<COMPILE_LANGUAGE:CXX>:-fPIC>)
@@ -236,6 +241,7 @@ target_compile_options(jet-live
   $<$<COMPILE_LANGUAGE:CXX>:-Wshadow>
   $<$<COMPILE_LANGUAGE:C>:-Wconversion>
   $<$<COMPILE_LANGUAGE:CXX>:-Wconversion>
+  -Wno-dangling-reference -Wno-shadow -Wno-deprecated-declarations
   )
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   target_compile_options(jet-live

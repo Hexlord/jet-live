@@ -4,6 +4,7 @@
 #include <memory>
 #include <unordered_map>
 #include <unordered_set>
+#include <atomic>
 #include "jet/live/AsyncEventQueue.hpp"
 #include "jet/live/CodeReloadPipeline.hpp"
 #include "jet/live/ICompilationUnitsParser.hpp"
@@ -20,6 +21,8 @@ namespace jet
      */
     struct LiveContext
     {
+        std::atomic_bool m_earlyExit{false};
+      
         /** Current config. */
         LiveConfig liveConfig;
 

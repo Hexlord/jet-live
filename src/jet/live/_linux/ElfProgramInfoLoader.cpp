@@ -338,7 +338,7 @@ namespace jet
                             case R_X86_64_SIZE32:     // 32,      Z + A
                             case R_X86_64_SIZE64:     // 64,      Z + A
                             default:
-                                context->events->addLog(LogSeverity::kError,
+                                context->events->addLog(LogSeverity::kDebug,
                                     "Relocation " + relToString(type) + " is not possible in PIC code");
                                 continue;
                         }

@@ -70,7 +70,7 @@ namespace jet
                 continue;
             }
             if (reloc.size == sizeof(int32_t)) {
-                *reinterpret_cast<int32_t*>(relocAddress) += oldVar->runtimeAddress - relocSymbol->runtimeAddress;
+                *reinterpret_cast<int32_t*>(relocAddress) += static_cast<int32_t>(oldVar->runtimeAddress - relocSymbol->runtimeAddress);
             } else if (reloc.size == sizeof(int64_t)) {
                 *reinterpret_cast<int64_t*>(relocAddress) += oldVar->runtimeAddress - relocSymbol->runtimeAddress;
             }

@@ -53,7 +53,7 @@ namespace jet
         /**
          * Retrieves status of the library.
          */
-        Status getStatus() const;
+        JetStatus getStatus() const;
 
     private:
         std::unique_ptr<LiveContext> m_context;
@@ -63,7 +63,6 @@ namespace jet
         const int m_recreateFileWatcherMaxTicks = 10;
         std::thread m_initThread;
         std::atomic_bool m_initialized{false};
-        std::atomic_bool m_earlyExit{false};
 
         void loadCompilationUnits();
         void loadSymbols();

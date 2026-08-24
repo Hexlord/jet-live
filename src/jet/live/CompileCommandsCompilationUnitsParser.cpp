@@ -114,6 +114,9 @@ namespace jet
         json dbJson;
         f >> dbJson;
         for (const auto& cmdJson : dbJson) {
+            if(context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }            
             CompilationUnit cu;
             cu.compilationCommandStr = cmdJson["command"];
             auto dirPath = TeenyPath::path(cmdJson["directory"].get<std::string>());
@@ -137,6 +140,9 @@ namespace jet
                 continue;
             }
 
+            if(context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }           
             wordexp_t result;
             switch (wordexp(cu.compilationCommandStr.c_str(), &result, 0)) {
                 case 0: break;
@@ -144,6 +150,9 @@ namespace jet
                 default: continue;
             }
 
+            if(context->m_earlyExit.load(std::memory_order_relaxed)) {
+                break;
+            }           
             argh::parser parser(
                 static_cast<int>(result.we_wordc), result.we_wordv, argh::parser::PREFER_PARAM_FOR_UNREG_OPTION);
             cu.objFilePath = parser({"-o", "--output"}).str();

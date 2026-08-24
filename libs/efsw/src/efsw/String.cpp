@@ -472,6 +472,7 @@ String& String::assign ( const String& str, size_t pos, size_t n )
 
 String& String::assign ( const char* s, size_t n )
 {
+    (void)n;
 	String tmp( s );
 
 	mString.assign( tmp.mString );
@@ -511,6 +512,7 @@ String& String::append ( const String& str, size_t pos, size_t n )
 
 String& String::append ( const char* s, size_t n )
 {
+    (void)n;
 	String tmp( s );
 
 	mString.append( tmp.mString );
@@ -619,6 +621,7 @@ std::size_t String::find( const String& str, std::size_t start ) const
 
 std::size_t String::find ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return find( String( s ), pos );
 }
 
@@ -639,6 +642,7 @@ std::size_t String::rfind ( const String& str, std::size_t pos ) const
 
 std::size_t String::rfind ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return rfind( String( s ), pos );
 }
 
@@ -699,6 +703,7 @@ std::size_t String::find_first_of ( const String& str, std::size_t pos ) const
 
 std::size_t String::find_first_of ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return find_first_of( String( s ), pos );
 }
 
@@ -719,6 +724,7 @@ std::size_t String::find_last_of ( const String& str, std::size_t pos ) const
 
 std::size_t String::find_last_of ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return find_last_of( String( s ), pos );
 }
 
@@ -739,6 +745,7 @@ std::size_t String::find_first_not_of ( const String& str, std::size_t pos ) con
 
 std::size_t String::find_first_not_of ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return find_first_not_of( String( s ), pos );
 }
 
@@ -759,6 +766,7 @@ std::size_t String::find_last_not_of ( const String& str, std::size_t pos ) cons
 
 std::size_t String::find_last_not_of ( const char* s, std::size_t pos, std::size_t n ) const
 {
+    (void)n;
 	return find_last_not_of( String( s ), pos );
 }
 

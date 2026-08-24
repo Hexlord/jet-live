@@ -19,6 +19,8 @@ std::string SimpleCommandInterpreter::runCommand(const std::string& command)
     // Implement your commands here
     if (command == "Hello") {
         result = "Hi there!";
+    } else if (command == "Bye") {
+        result = "Well, bye!";
     } else {
         result = "Sorry, I don't know what '" + command
                  + "' means. Fix it in runtime in 'SimpleCommandInterpreter::runCommand'";
